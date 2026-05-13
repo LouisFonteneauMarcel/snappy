@@ -22,7 +22,7 @@ FoamFile
 // Which of the steps to run
 castellatedMesh true;
 snap            true;
-addLayers       false;
+addLayers       true;
 
 
 // Optional: single region surfaces get patch names according to
@@ -179,10 +179,12 @@ castellatedMeshControls
         volume_fluide
         {
             level (2 2);
+/*
             cellZone fluide;
             faceZone fluide_to_solide_interne;
             cellZoneInside inside;
             faceType boundary;   // ou baffle selon le cas
+*/
         }
 /*
         corps_interne
@@ -284,7 +286,7 @@ castellatedMeshControls
 
         // Ad 1. Specify a single location and how to treat faces inbetween
         //       cellZones
-    locationInMesh((-0.9501 0.501 0.0001));
+    locationInMesh (-0.9501 0.501 0.0001);
     /*
         locationsInMesh
     (
