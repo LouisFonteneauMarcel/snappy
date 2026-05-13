@@ -1,0 +1,86 @@
+solid "corps_interne"
+   facet normal 1 0 -1.92080108066636E-16
+      outer loop
+         vertex -21 1000 -188
+         vertex -21 1000 101
+         vertex -21 0 -188
+      endloop
+   endfacet
+   facet normal 1 0 -1.92080108066636E-16
+      outer loop
+         vertex -21 0 -188
+         vertex -21 1000 101
+         vertex -21 0 101
+      endloop
+   endfacet
+   facet normal 1.05534508044216E-16 0 1
+      outer loop
+         vertex -21 1000 101
+         vertex -284 1000 101
+         vertex -21 0 101
+      endloop
+   endfacet
+   facet normal 1.05534508044216E-16 0 1
+      outer loop
+         vertex -21 0 101
+         vertex -284 1000 101
+         vertex -284 0 101
+      endloop
+   endfacet
+   facet normal -1 0 1.92080108066636E-16
+      outer loop
+         vertex -284 1000 101
+         vertex -284 1000 -188
+         vertex -284 0 101
+      endloop
+   endfacet
+   facet normal -1 0 1.92080108066636E-16
+      outer loop
+         vertex -284 0 101
+         vertex -284 1000 -188
+         vertex -284 0 -188
+      endloop
+   endfacet
+   facet normal 1.05534508044216E-16 0 -1
+      outer loop
+         vertex -284 1000 -188
+         vertex -21 1000 -188
+         vertex -284 0 -188
+      endloop
+   endfacet
+   facet normal 1.05534508044216E-16 0 -1
+      outer loop
+         vertex -284 0 -188
+         vertex -21 1000 -188
+         vertex -21 0 -188
+      endloop
+   endfacet
+   facet normal 0 1 0
+      outer loop
+         vertex -21 1000 101
+         vertex -21 1000 -188
+         vertex -284 1000 101
+      endloop
+   endfacet
+   facet normal 0 1 0
+      outer loop
+         vertex -284 1000 101
+         vertex -21 1000 -188
+         vertex -284 1000 -188
+      endloop
+   endfacet
+   facet normal 0 -1 0
+      outer loop
+         vertex -21 0 -188
+         vertex -21 0 101
+         vertex -284 0 -188
+      endloop
+   endfacet
+   facet normal 0 -1 0
+      outer loop
+         vertex -284 0 -188
+         vertex -21 0 101
+         vertex -284 0 101
+      endloop
+   endfacet
+endsolid
