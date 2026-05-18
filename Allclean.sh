@@ -1,3 +1,4 @@
+rm -r processor*
 rm -r constant/fluide
 rm -r constant/solide_interne
 rm -r constant/solide_externe
