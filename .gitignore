@@ -1,5 +1,6 @@
-constant/extendedFeatureEdgeMesh
-constant/PolyMesh
+constant/extendedFeatureEdgeMesh/
+constant/polyMesh/
 3/
 constant/triSurface/*.eMesh
 constant/triSurface/*.curvature
+processor*

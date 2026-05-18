@@ -46,48 +46,25 @@ addLayers       true;
 // - to specify refinement for any mesh cell inside/outside/near
 // - to 'snap' the mesh boundary to the surface
 geometry
-{   
-    /*
-    corps_externe.stl
-    {
-        name corps_externe;
-        type triSurfaceMesh;
-
-        //tolerance   1E-5;   // optional:non-default tolerance on intersections
-        //maxTreeDepth 10;    // optional:depth of octree. Decrease only in case
-                              // of memory limitations.
-
-        // Per region the patchname. If not provided will be <surface>_<region>.
-        // Note: this name cannot be used to identity this region in any
-        //       other part of this dictionary; it is only a name
-        //       for the combination of surface+region (which is only used
-        //       when creating patches)
-        // regions
-        // {
-        //     secondSolid
-        //     {
-        //         name mySecondPatch;
-        //     }
-        // }
-    }
-    */
-
-    /*
-    corps_interne.stl
-    {
-        name corps_interne;
-        type triSurfaceMesh;
-    }
-    */
-
+{
     volume_fluide.stl
     {
-        name volume_fluide;
         type triSurfaceMesh;
+        name volume_fluide;
     }
 
-};
+    externe_scale.stl
+    {
+        type triSurfaceMesh;
+        name corps_externe;
+    }
 
+    interne_scale.stl
+    {
+        type triSurfaceMesh;
+        name corps_interne;
+    }
+}
 
 // Settings for the castellatedMesh generation.
 castellatedMeshControls
@@ -143,25 +120,22 @@ castellatedMeshControls
 
     features
     (
-        /*
         {
-            file "corps_externe.eMesh";
-            level 2;        // Have level 2 for all cells intersected
-                            //                      // by feature.
-                            //    levels ((0.1 2)); // Have level 2 for all cells within
-                            //                      // 0.1 of feature.
+            file "volume_fluide.extendedFeatureEdgeMesh";    //"coude_walls.eMesh";
+            level 1;
         }
-        */
-        /*
+
         {
-            file "corps_interne.eMesh";
-            level 2;
+            file "externe_scale.extendedFeatureEdgeMesh";    //"coude_walls.eMesh";
+            level 1;
         }
-        */
+
         {
-            file "volume_fluide.eMesh";
-            level 2;
+            file "interne_scale.extendedFeatureEdgeMesh";    //"coude_walls.eMesh";
+            level 1;
         }
+
+        
     );
 
 
@@ -178,32 +152,22 @@ castellatedMeshControls
     {
         volume_fluide
         {
+            // Surface-wise min and max refinement level
             level (2 2);
-/*
-            cellZone fluide;
-            faceZone fluide_to_solide_interne;
-            cellZoneInside inside;
-            faceType boundary;   // ou baffle selon le cas
-*/
         }
-/*
-        corps_interne
-        {
-            level (2 2);
-            cellZone solide_interne;
-            faceZone solide_interne_to_fluide;
-            cellZoneInside inside;
-            faceType boundary;   // ou baffle selon le cas
-        }
-*/
-/*
+
         corps_externe
         {
+            // Surface-wise min and max refinement level
             level (2 2);
-            cellZone solide_externe;
-            cellZoneInside inside;
         }
-*/
+
+        corps_interne
+        {
+            // Surface-wise min and max refinement level
+            level (2 2);
+        }
+
     }
 
     // Feature angle:
@@ -286,15 +250,12 @@ castellatedMeshControls
 
         // Ad 1. Specify a single location and how to treat faces inbetween
         //       cellZones
-    locationInMesh (-0.9501 0.501 0.0001);
-    /*
         locationsInMesh
-    (
-        ((-0.9501 0.501 0.0001) fluide)
-        ((-0.501  0.501  0.0001) solide_externe)
-        ((-0.101  0.501  0.0001) solide_interne)
-    );
-    */
+        (
+            ((-0.9501 0.501 0.0001) fluide)
+            ((-0.501  0.501  0.0001) solide_externe)
+            ((-0.101 0.501 0.0001) solide_interne)
+        );
 
         // Whether any faceZones (as specified in the refinementSurfaces)
         // are only on the boundary of corresponding cellZones.
@@ -453,6 +414,7 @@ snapControls
     ${_meshMotionSolver}
 }
 
+
 // Settings for the layer addition.
 addLayersControls
 {
@@ -464,7 +426,15 @@ addLayersControls
     nGrow           0;
     layers
     {
-		volume_fluide
+		fluide_to_solide_externe
+		{
+            nSurfaceLayers          3;
+            //expansionRatio          1.2;
+            //thickness     			0.6;
+            minThickness            0.00001;
+        }
+
+        fluide_to_solide_interne
 		{
             nSurfaceLayers          3;
             //expansionRatio          1.2;
@@ -498,7 +468,7 @@ addLayersControls
     solver          displacementLaplacian;
     displacementLaplacianCoeffs
     {
-        diffusivity     quadratic inverseDistance 1(wall);
+        diffusivity     quadratic inverseDistance 1(volume_fluide);
     }
  
     // Mesh shrinking overall settings
