@@ -1,0 +1,11 @@
+rm -r constant/fluide
+rm -r constant/solide_interne
+rm -r constant/solide_externe
+rm -r constant/cellToRegion
+rm -r constant/polyMesh
+rm -r 3/
+rm -r 0/
+rm -r system/fluide
+rm -r system/solide_interne
+rm -r system/solide_externe
+rm -r system/cellToRegion
