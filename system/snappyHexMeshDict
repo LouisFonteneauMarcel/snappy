@@ -47,10 +47,22 @@ addLayers       true;
 // - to 'snap' the mesh boundary to the surface
 geometry
 {
-    volume_fluide.stl
+    volume_fluide_bis.stl
     {
         type triSurfaceMesh;
         name volume_fluide;
+    }
+
+    inlet.stl
+    {
+        type triSurfaceMesh;
+        name inlet;
+    }
+
+    outlet.stl
+    {
+        type triSurfaceMesh;
+        name outlet;
     }
 
     externe_scale.stl
@@ -154,18 +166,35 @@ castellatedMeshControls
         {
             // Surface-wise min and max refinement level
             level (2 2);
+            type wall;
         }
 
         corps_externe
         {
             // Surface-wise min and max refinement level
             level (2 2);
+            type wall;
         }
 
         corps_interne
         {
             // Surface-wise min and max refinement level
             level (2 2);
+            type wall;
+        }
+
+        inlet
+        {
+            // Surface-wise min and max refinement level
+            level (2 2);
+            type patch;
+        }
+
+        outlet
+        {
+            // Surface-wise min and max refinement level
+            level (2 2);
+            type patch;
         }
 
     }
