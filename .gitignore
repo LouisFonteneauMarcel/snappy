@@ -3,3 +3,4 @@ constant/PolyMesh
 3/
 constant/triSurface/*.eMesh
 constant/triSurface/*.curvature
+processor*

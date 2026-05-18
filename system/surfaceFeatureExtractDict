@@ -14,7 +14,7 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-corps_externe.stl
+externe_scale.stl
 {
     // Extract raw features (none | extractFromFile | extractFromSurface)
     extractionMethod    extractFromSurface;
@@ -40,7 +40,7 @@ curvature true;
     // Write features to obj format for postprocessing
     writeObj            yes;
 }
-corps_interne.stl
+interne_scale.stl
 {
     // Extract raw features (none | extractFromFile | extractFromSurface)
     extractionMethod    extractFromSurface;
